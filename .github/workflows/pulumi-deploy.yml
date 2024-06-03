@@ -25,6 +25,7 @@ jobs:
         uses: pulumi/actions@v3
         with:
           command: up
+          args: --yes
           stack-name: dev
 
       - name: Azure Login
