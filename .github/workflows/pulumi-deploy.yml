@@ -21,7 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-          
+      - name: Set up Pulumi
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: dev1
 
       - name: Azure Login
         uses: azure/login@v1
