@@ -1,0 +1,7 @@
+name: pulumi-static-website
+runtime: nodejs
+description: A minimal Azure Native TypeScript Pulumi program
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: azure-typescript
