@@ -25,8 +25,7 @@ jobs:
         uses: pulumi/actions@v3
         with:
           command: up
-          stack-name: dev1
-          cloud-url: azblob://pulumi-state
+          
 
       - name: Azure Login
         uses: azure/login@v1
