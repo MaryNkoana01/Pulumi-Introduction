@@ -21,11 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Set up Pulumi
-        uses: pulumi/actions@v3
-        with:
-          command: up
-          stack-name: dev
+      - name: Log in to Pulumi
+        run: pulumi login
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Select Pulumi Stack
+        run: pulumi stack select ${{ github.event.inputs.stack }}
+
 
       - name: Azure Login
         uses: azure/login@v1
