@@ -7,12 +7,12 @@ const containerNames = config.require("containerNames").split(",");
 const location = config.require("location");
 
 // Create an Azure Resource Group
-const resourceGroup = new azure.core.ResourceGroup("staticWebsiteResourceGroup", {
+const resourceGroup = new azure.core.ResourceGroup("staticWebResourceGroup", {
     location: location,
 });
 
 // Create a Storage Account
-const storageAccount = new azure.storage.Account("staticWebsiteStorageAccount", {
+const storageAccount = new azure.storage.Account("staticWebStorage", {
     resourceGroupName: resourceGroup.name,
     location: resourceGroup.location,
     accountTier: "Standard",
