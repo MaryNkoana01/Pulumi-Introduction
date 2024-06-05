@@ -1,3 +1,2 @@
 # Pulumi-Introduction
 
-Pulumi-Introduction
