@@ -1,2 +1,2 @@
 config:
-  containerNames: "container1,container2,container3"
+  azure-native:location: WestUS2

@@ -27,7 +27,7 @@ jobs:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Select Pulumi Stack
-        run: pulumi stack select ${{ github.event.inputs.stack }}
+        run: pulumi stack select dev1
 
 
       - name: Azure Login
