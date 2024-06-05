@@ -5,7 +5,7 @@ import * as fs from "fs";
 // Load the configuration file
 const config = new pulumi.Config();
 const containerNames = config.require("containerNames").split(",");
-const location = config.require("azure-native:location");
+const location = config.require("location");
 
 // Create an Azure Resource Group
 const resourceGroup = new azure.core.ResourceGroup("staticWebResourceGroup", {
