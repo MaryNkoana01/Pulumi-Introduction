@@ -2,12 +2,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as resources from "@pulumi/azure-native/resources";
 import * as storage from "@pulumi/azure-native/storage";
 import * as azure from "@pulumi/azure";
+
 // Load the configuration file
 const config = new pulumi.Config();
 const containerNames = config.require("containerNames").split(",");
+const location = config.require("azure-native:location");
 
 // Create an Azure Resource Group
-const resourceGroup = new azure.core.ResourceGroup("staticWebsiteResourceGroup");
+const resourceGroup = new azure.core.ResourceGroup("staticWebsiteResourceGroup", {
+    location: location,
+});
 
 // Create a Storage Account
 const storageAccount = new azure.storage.Account("staticWebsiteStorageAccount", {
