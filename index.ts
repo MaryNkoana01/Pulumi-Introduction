@@ -35,7 +35,8 @@ containerNames.forEach(containerName => {
 // Upload index.html to the storage account
 const indexHtml = new azure.storage.Blob("index.html", {
     storageAccountName: storageAccount.name,
-    storageContainerName: storageAccount.staticWebsite.containerName.apply(name => name),
+    storageContainerName: "$web",  // $web is the default container for static websites
+    type: "Block",  // Type of blob
     source: new pulumi.asset.FileAsset("index.html"),
     contentType: "text/html",
 });
