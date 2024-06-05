@@ -31,8 +31,8 @@ jobs:
 
       - name: Set Pulumi Config
         run: |
-          pulumi config set azure-native:location WestUS2
-          pulumi config set pulumi-static-website:containerNames container1,container2,container3
+          pulumi config set azure-native:location WestUS2 --stack dev1
+          pulumi config set pulumi-static-website:containerNames container1,container2,container3 --stack dev1
 
       - name: Azure Login
         uses: azure/login@v1
