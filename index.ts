@@ -1,18 +1,19 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as azure from "@pulumi/azure";
+import * as fs from "fs";
 
 // Load the configuration file
 const config = new pulumi.Config();
 const containerNames = config.require("containerNames").split(",");
-const location = config.require("location");
+const location = config.require("azure-native:location");
 
 // Create an Azure Resource Group
 const resourceGroup = new azure.core.ResourceGroup("staticWebResourceGroup", {
     location: location,
 });
 
-// Create a Storage Account
-const storageAccount = new azure.storage.Account("staticWebStorage", {
+// Create a Storage Account with a shorter name
+const storageAccount = new azure.storage.Account("staticsa", {
     resourceGroupName: resourceGroup.name,
     location: resourceGroup.location,
     accountTier: "Standard",
@@ -29,6 +30,14 @@ containerNames.forEach(containerName => {
         storageAccountName: storageAccount.name,
         containerAccessType: "blob",
     });
+});
+
+// Upload index.html to the storage account
+const indexHtml = new azure.storage.Blob("index.html", {
+    storageAccountName: storageAccount.name,
+    storageContainerName: storageAccount.staticWebsite.containerName.apply(name => name),
+    source: new pulumi.asset.FileAsset("index.html"),
+    contentType: "text/html",
 });
 
 // Export the primary endpoint of the static website
